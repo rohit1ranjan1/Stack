@@ -1,0 +1,60 @@
+#include<iostream>
+using namespace std;
+#define MAX 15
+int s[MAX];
+int top=-1;
+
+void Push(int x){
+if(top>=MAX)
+cout<<"Stack overflow!";
+else
+{
+top++;
+s[top]=x;
+}
+}
+
+void Pop(){
+if(top==-1)
+cout<<"Stack Empty!";
+else
+top--;
+}
+
+void Top(){
+if(top==-1)
+cout<<"Stack Empty!";
+else
+cout<<s[top];
+}
+
+bool IsEmpty(){
+if(top==-1)
+return true;
+else
+return false;
+}
+
+void Print(){
+  if(top==-1)
+cout<<"Stack Empty!\n";
+else
+{  
+cout<<"Stack: ";
+for(int i=0;i<=top;i++)
+cout<<s[i]<<" ";
+}
+
+int main(){
+Push(1);
+Push(2);
+Push(3);
+Pop();
+Push(0);
+Print();
+
+}
+
+/*
+Stack: 1 2 0
+*/
