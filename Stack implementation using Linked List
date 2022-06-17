@@ -1,0 +1,73 @@
+#include<iostream>
+using namespace std;
+
+struct Node{
+int data;
+Node* next;
+};
+
+Node* top=nullptr;
+
+void Push(int x){
+Node* temp=new Node;
+temp->data=x;
+temp->next=top;
+top=temp;
+}
+
+void Pop(){
+if(top==nullptr)
+cout<<"Stack Empty!";
+else
+{
+Node* temp=top;
+top=top->next;
+free(temp);
+}
+}
+
+void Top(){
+if(top==nullptr)
+cout<<"Stack Empty!";
+else
+{
+cout<<"Top of Stack is: "<<top->data<<endl;
+}
+}
+
+bool IsEmpty(){
+if(top==nullptr)
+return true;
+else
+return false;
+}
+
+void Print(){
+Node* it=top;
+cout<<"Stack: ";
+while(it!=nullptr){
+cout<<it->data<<" ";
+it=it->next;
+}
+cout<<endl;
+}
+
+int main(){
+Push(1);
+Push(2);
+Push(3);
+Print();
+Top();
+Pop();
+Push(0);
+Print();
+Top();
+
+}
+
+/*
+Stack: 3 2 1 
+Top of Stack is: 3
+Stack: 0 2 1 
+Top of Stack is: 0
+*/
