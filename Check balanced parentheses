@@ -1,4 +1,4 @@
-
+Geeks For Geeks implementation:-
 
 #include <iostream>
 #include <stack>
@@ -40,7 +40,55 @@ int main() {
     return 0;
 }
 
+
+
+Better implementation:-
+
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+bool CheckBalancedParatheses(char exp[], unsigned long len){
+stack<char> S;
+    for (int i  = 0; i<len; i++) {
+        if ( (exp[i] == '(') ||  (exp[i] == '{') || (exp[i] == '[')   ) {
+            S.push(exp[i]);
+        }
+        else if (   (exp[i] == ')') || (exp[i] == ']') || (exp[i] == '}')  ){
+            if (S.empty()){
+                return false;
+            }
+            if ((exp[i] == ')' && S.top()=='(') || (exp[i] == ']' && S.top()=='[') || (exp[i] == '}' && S.top()=='{')) {
+                S.pop();
+            }
+            else
+                return false;
+        }
+    }
+   return S.empty();
+}
+
+int main(void){
+    char c[20];
+    cout<<"Enter the expression: ";
+    cin.get(c,20) ;
+    bool check=CheckBalancedParatheses(c,strlen(c));  
+    if(check)
+        cout<<"Balanced Expression!";
+
+    else
+        cout<<"Unbalanced Expression!"; 
+
+
+    return 0;
+}
+
+
 /*
 Enter the expression: (){[(])]}
-Balanced Expression!
+Unbalanced Expression!
+
+
+Enter the expression: (a+B){[(a*b}c-d)]}
+Unbalanced Expression!
 */
