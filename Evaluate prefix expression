@@ -1,0 +1,58 @@
+#include<iostream>
+#include<bits/stdc++.h>
+#include<stack>
+using namespace std;
+
+int perform(char opr, int x, int y)
+{
+int res;
+if(opr=='+')
+res=y+x;
+
+else if(opr=='-')
+res=y-x;
+
+else if(opr=='*')
+res=y*x;
+
+else
+res=y/x;
+
+return res;
+}
+
+int evaluate(char* c, int n)
+{
+stack<int> S;
+char op1, op2;
+for(int i=n-1;i>=0;i--)
+{
+
+  if(isdigit(c[i])){
+            S.push(c[i]-'0');
+        }
+        else {
+            op2=S.top();
+            S.pop();
+            op1=S.top();
+            S.pop();
+            int val=perform(c[i],op1,op2);
+            S.push(val);
+        }
+}
+return S.top();
+}
+
+int main()
+{
+char c[20];
+cout<<"Enter the prefix expression: ";
+cin.get(c,20);
+int finalResult=evaluate(c,strlen(c));
+cout<<"Value of given expression is: "<<finalResult;
+}
+
+/*
+Enter the prefix expression: -+*23*549
+Value of given expression is: 17
+*/
