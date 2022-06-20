@@ -1,0 +1,46 @@
+
+
+#include <iostream>
+#include <stack>
+#include <bits/stdc++.h>
+using namespace std;
+bool CheckBalancedParatheses(char* c, int n)
+{
+stack<char> S;
+
+for(int i=0;i<n;i++)
+{
+if(S.empty())
+S.push(c[i]);
+
+else if(c[i]==')' && S.top()=='('  || c[i]=='}' && S.top()=='{' || c[i]==']' && S.top()=='[' )
+S.pop();
+
+else
+S.push(c[i]);
+
+}
+
+    return (S.empty());  
+
+}
+
+int main() {
+    char c[20];
+    cout<<"Enter the expression: ";
+    cin.get(c,20) ;
+    bool check=CheckBalancedParatheses(c,strlen(c));  
+    if(check)
+        cout<<"Balanced Expression!";
+
+    else
+        cout<<"Unbalanced Expression!"; 
+
+
+    return 0;
+}
+
+/*
+Enter the expression: (){[(])]}
+Balanced Expression!
+*/
