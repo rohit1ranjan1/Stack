@@ -29,8 +29,12 @@ str=str+c;
 
  else{                                                                     // if c is operator
 while(!St.empty() && (prec(c)<=prec(St.top()))){
+if(c=='^' && St.top()=='^')
+break;
+else{
 str=str+St.top();
 St.pop();
+}
 }
 St.push(c);
 }
@@ -55,4 +59,7 @@ infix_to_postfix(ch);
 /*
 Enter the Infix expression: a+b*c-D*E
 abc*+DE*-
+
+Enter the Infix expression: a^b^c
+abc^^
 */
