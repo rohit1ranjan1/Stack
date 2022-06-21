@@ -1,0 +1,51 @@
+
+#include <iostream>
+#include<bits/stdc++.h>
+#include<stack>
+using namespace std;
+int prec(char ck){
+if(ck=='*' || ck=='/')
+return 2;
+
+else if(ck=='+' || ck=='-')
+return 1;
+
+else
+return -1;
+    
+}
+void infix_to_postfix(char* s){
+stack<char> St;
+string str;
+for(int i=0;i<strlen(s);i++){
+char c=s[i];
+if((c>='a' && c<='z') || (c>='A' && c<='Z') || (c>='0' && c<='9'))           //if c is operand
+str=str+c;
+
+ else{                                                                     // if c is operator
+while(!St.empty() && (prec(c)<=prec(St.top()))){
+str=str+St.top();
+St.pop();
+}
+St.push(c);
+}
+}
+while(!St.empty()){
+str=str+St.top();
+St.pop();
+}
+cout<<"\n"<<str<<endl;
+}
+int main() {
+    char ch[20];
+cout<<"Enter the Infix expression: ";
+cin.get(ch,20);
+infix_to_postfix(ch);
+
+    return 0;
+}
+
+/*
+Enter the Infix expression: a+b*c-D*E
+abc*+DE*-
+*/
