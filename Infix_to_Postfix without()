@@ -3,6 +3,9 @@
 #include<bits/stdc++.h>
 #include<stack>
 using namespace std;
+
+
+// Function to return precedence of operators
 int prec(char ck){
 if(ck=='*' || ck=='/')
 return 2;
@@ -19,7 +22,9 @@ stack<char> St;
 string str;
 for(int i=0;i<strlen(s);i++){
 char c=s[i];
-if((c>='a' && c<='z') || (c>='A' && c<='Z') || (c>='0' && c<='9'))           //if c is operand
+
+ // If the scanned character is an operand, add it to output string.
+if((c>='a' && c<='z') || (c>='A' && c<='Z') || (c>='0' && c<='9'))          
 str=str+c;
 
  else{                                                                     // if c is operator
@@ -30,6 +35,8 @@ St.pop();
 St.push(c);
 }
 }
+
+  // Pop all the remaining elements from the stack
 while(!St.empty()){
 str=str+St.top();
 St.pop();
