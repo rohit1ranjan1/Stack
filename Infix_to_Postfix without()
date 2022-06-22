@@ -7,7 +7,10 @@ using namespace std;
 
 // Function to return precedence of operators
 int prec(char ck){
-if(ck=='*' || ck=='/')
+if(ck=='^')
+return 3;
+
+else if(ck=='*' || ck=='/')
 return 2;
 
 else if(ck=='+' || ck=='-')
